@@ -128,4 +128,7 @@ class profiles::base (
     ensure  => 'file',
     content => file("${module_name}/shell_setup.sh"),
   }
+
+  # configure puppet agent/server
+  contain profiles::puppet
 }
