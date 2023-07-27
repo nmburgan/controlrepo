@@ -15,6 +15,7 @@
 * [`profiles::github_runners`](#profiles--github_runners): configures a self-hosted github runner
 * [`profiles::grafana`](#profiles--grafana): installs grafana to display stats from dropsonde about Vox Pupuli modules
 * [`profiles::libvirt`](#profiles--libvirt): installs libvirt
+* [`profiles::nftables`](#profiles--nftables): configure certain nftable rules
 * [`profiles::nginx`](#profiles--nginx): multiple profiles requires nginx vhosts, this profile pulls in the nginx class/package/service setup
 * [`profiles::node_exporter`](#profiles--node_exporter): install node_exporter
 * [`profiles::postfix`](#profiles--postfix): installs postfix
@@ -322,6 +323,51 @@ Default value: `$postgresql_user`
 ### <a name="profiles--libvirt"></a>`profiles::libvirt`
 
 installs libvirt
+
+### <a name="profiles--nftables"></a>`profiles::nftables`
+
+configure certain nftable rules
+
+#### Parameters
+
+The following parameters are available in the `profiles::nftables` class:
+
+* [`in_ssh`](#-profiles--nftables--in_ssh)
+* [`icmp`](#-profiles--nftables--icmp)
+* [`nat`](#-profiles--nftables--nat)
+* [`out_all`](#-profiles--nftables--out_all)
+
+##### <a name="-profiles--nftables--in_ssh"></a>`in_ssh`
+
+Data type: `Boolean`
+
+allows incoming ssh connections
+
+Default value: `true`
+
+##### <a name="-profiles--nftables--icmp"></a>`icmp`
+
+Data type: `Boolean`
+
+allow all ICMP traffic
+
+Default value: `true`
+
+##### <a name="-profiles--nftables--nat"></a>`nat`
+
+Data type: `Boolean`
+
+decide if the box should be allowed to handle NAT traffic
+
+Default value: `false`
+
+##### <a name="-profiles--nftables--out_all"></a>`out_all`
+
+Data type: `Boolean`
+
+Allow all outbound connections
+
+Default value: `false`
 
 ### <a name="profiles--nginx"></a>`profiles::nginx`
 
