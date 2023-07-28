@@ -12,6 +12,7 @@
 * [`profiles::borg`](#profiles--borg): configures borg backups
 * [`profiles::certbot`](#profiles--certbot): configures the certbot foo. Doesn't create certificates!
 * [`profiles::docker`](#profiles--docker): installs docker
+* [`profiles::foreman`](#profiles--foreman): configure foreman + plugins
 * [`profiles::github_runners`](#profiles--github_runners): configures a self-hosted github runner
 * [`profiles::grafana`](#profiles--grafana): installs grafana to display stats from dropsonde about Vox Pupuli modules
 * [`profiles::libvirt`](#profiles--libvirt): installs libvirt
@@ -23,9 +24,7 @@
 * [`profiles::postgresql`](#profiles--postgresql): install latest postgresql with upstream repositories
 * [`profiles::prometheus`](#profiles--prometheus): install Prometheus
 * [`profiles::puppet`](#profiles--puppet): configure puppet agent and server
-* [`profiles::puppetcode`](#profiles--puppetcode): some resources to manage puppete code
 * [`profiles::puppetmodule`](#profiles--puppetmodule): configures puppetmodule.info
-* [`profiles::puppetserver_firewalling`](#profiles--puppetserver_firewalling): manages nft rules on Puppetserver/PuppetDB
 * [`profiles::redis`](#profiles--redis): configures redis on different platforms
 * [`profiles::ssh`](#profiles--ssh): ssh profile to manage sshd + ssh keys
 * [`profiles::ssh_keys::additional_keys`](#profiles--ssh_keys--additional_keys): Allow additional admins' keys to be pulled in via Hiera
@@ -42,6 +41,9 @@
 #### Private Classes
 
 * `profiles::github_runners::ruby`: install ruby for GitHub self hosted runners
+* `profiles::puppet::code`: some resources to manage puppete code
+* `profiles::puppet::db`: installs puppetdb *on a puppetserver that also runs foreman*
+* `profiles::puppetserver_firewalling`: manages nft rules on Puppetserver/PuppetDB
 
 ### Defined types
 
@@ -168,6 +170,14 @@ configures the certbot foo. Doesn't create certificates!
 ### <a name="profiles--docker"></a>`profiles::docker`
 
 installs docker
+
+### <a name="profiles--foreman"></a>`profiles::foreman`
+
+configure foreman + plugins
+
+* **See also**
+  * `cat
+    * /opt/puppetlabs/puppet/cache/foreman_cache_data/admin_password` provides the admin password
 
 ### <a name="profiles--github_runners"></a>`profiles::github_runners`
 
@@ -435,10 +445,6 @@ configure if we should install msgpack on the agent
 
 Default value: `($facts['os']['name'] != 'gentoo'`
 
-### <a name="profiles--puppetcode"></a>`profiles::puppetcode`
-
-some resources to manage puppete code
-
 ### <a name="profiles--puppetmodule"></a>`profiles::puppetmodule`
 
 configures puppetmodule.info
@@ -487,10 +493,6 @@ Data type: `String[1]`
 the database user
 
 Default value: `'puppetmodule'`
-
-### <a name="profiles--puppetserver_firewalling"></a>`profiles::puppetserver_firewalling`
-
-manages nft rules on Puppetserver/PuppetDB
 
 ### <a name="profiles--redis"></a>`profiles::redis`
 
