@@ -28,6 +28,7 @@ class profiles::base (
     'make',
     'tree',
     'uptimed',
+    'whois',
     "linux-generic-hwe-${facts['os']['release']['major']}",
   ]
 
